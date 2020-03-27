@@ -6,5 +6,23 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+                <ul class="nav nav-tabs" id="tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="csharp-tab" data-toggle="tab" href="#csharp" role="tab" aria-controls="csharp" aria-selected="true">C#</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="xaml-tab" data-toggle="tab" href="#xaml" role="tab" aria-controls="xaml" aria-selected="false">XAML</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="tabsContent">
+                    <div class="tab-pane fade show active" id="csharp" role="tabpanel" aria-labelledby="csharp-tab">@Html.Raw(Model.CSharpSampleHtml)</div>
+                    <div class="tab-pane fade" id="xaml" role="tabpanel" aria-labelledby="xaml-tab">Coming soon...</div>
+                </div>
+            </div>
+        </div>
+    </div>    
 </div>

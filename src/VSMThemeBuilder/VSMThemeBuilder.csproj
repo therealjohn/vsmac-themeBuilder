@@ -6,7 +6,25 @@
 
     <ItemGroup>
       <Folder Include="Core" />
+      <Folder Include="Templates\" />
     </ItemGroup>
-
-
+    
+    <ItemGroup>
+      <Compile Remove="Levaro.CSharp.Display\**" />
+      <Compile Remove="Templates\CSharpSample.cs" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Remove="Levaro.CSharp.Display\**" />     
+    </ItemGroup>
+    <ItemGroup>
+      <Content Remove="Levaro.CSharp.Display\**" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="Levaro.CSharp.Display\Levaro.CSharp.Display.csproj">
+        <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+      </ProjectReference>
+    </ItemGroup>
+    <ItemGroup>
+      <Content Include="Templates\CSharpSample.cs" />
+    </ItemGroup>
 </Project>

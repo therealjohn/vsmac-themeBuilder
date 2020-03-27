@@ -1,11 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSMThemeBuilder", "VSMThemeBuilder.csproj", "{94E2284F-3FB0-43FF-956F-F6CEAC1E9BC7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Config", "Solution Config", "{9AF21E80-5BB1-4727-A0E6-B6FB74E17591}"
-ProjectSection(SolutionItems) = preProject
-	.editorconfig = .editorconfig
-EndProjectSection
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Levaro.CSharp.Display", "Levaro.CSharp.Display\Levaro.CSharp.Display.csproj", "{A15EA3DA-0604-4457-81B7-9E628123837A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,5 +20,11 @@ Global
 		{94E2284F-3FB0-43FF-956F-F6CEAC1E9BC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94E2284F-3FB0-43FF-956F-F6CEAC1E9BC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94E2284F-3FB0-43FF-956F-F6CEAC1E9BC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A15EA3DA-0604-4457-81B7-9E628123837A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A15EA3DA-0604-4457-81B7-9E628123837A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A15EA3DA-0604-4457-81B7-9E628123837A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A15EA3DA-0604-4457-81B7-9E628123837A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
 EndGlobal
