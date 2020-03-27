@@ -3,5 +3,27 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>
-
+    
+    <ItemGroup>
+      <Compile Remove="Levaro.CSharp.Display\**" />
+      <Compile Remove="Templates\CSharpSample.cs" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Remove="Levaro.CSharp.Display\**" />     
+    </ItemGroup>
+    <ItemGroup>
+      <Content Remove="Levaro.CSharp.Display\**" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <Compile Remove="Templates\CSharpSample.cs" />
+    </ItemGroup>
+    <ItemGroup>
+      <Content Include="Templates\CSharpSample.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="Levaro.CSharp.Display\Levaro.CSharp.Display.csproj">
+        <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+      </ProjectReference>
+    </ItemGroup>
 </Project>

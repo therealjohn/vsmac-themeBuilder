@@ -6,7 +6,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Config", "Solution
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Levaro.CSharp.Display", "Levaro.CSharp.Display\Levaro.CSharp.Display.csproj", "{A15EA3DA-0604-4457-81B7-9E628123837A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Levaro.CSharp.Display", "WebSite\Levaro.CSharp.Display\Levaro.CSharp.Display.csproj", "{A15EA3DA-0604-4457-81B7-9E628123837A}"
 EndProject
 Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "VSMThemeBuilder", "WebSite\VSMThemeBuilder.csproj", "{9C55A68B-6ED2-4E1E-A8B1-6E7A9C076094}"
 EndProject
