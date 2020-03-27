@@ -1,3 +1,4 @@
+Original spec: https://www.monodevelop.com/developers/articles/color-scheme-definition/
 **Example JSON**
 ``` JSON
 {
@@ -7,7 +8,7 @@
 	"originator": "Author Details",
 
 	"palette": [
-		{ "name": "color-name", "value": "#RRGGBB" }
+		{ "name": "color-name", "value": "#RRGGBB | HSL" }
   ],
   
   "colors": [
