@@ -14,15 +14,53 @@
                     <li class="nav-item">
                         <a class="nav-link active" id="csharp-tab" data-toggle="tab" href="#csharp" role="tab" aria-controls="csharp" aria-selected="true">C#</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="xaml-tab" data-toggle="tab" href="#xaml" role="tab" aria-controls="xaml" aria-selected="false">XAML</a>
-                    </li>
                 </ul>
-                <div class="tab-content" id="tabsContent">
-                    <div class="tab-pane fade show active" id="csharp" role="tabpanel" aria-labelledby="csharp-tab">@Html.Raw(Model.CSharpSampleHtml)</div>
-                    <div class="tab-pane fade" id="xaml" role="tabpanel" aria-labelledby="xaml-tab">Coming soon...</div>
+            </div>
+            <div class="tab-content" id="tabsContent">
+                <div class="tab-pane fade show active" id="csharp" role="tabpanel" aria-labelledby="csharp-tab">
+                    <div class="row">
+                        @Html.Raw(Model.CSharpSampleHtml)
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="Keyword">Keyword</label>
+                        </div>
+                        <div class="col-6">
+                            <input class="colorPicker" type="color" id="Keyword" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="Identifier">Identifier</label>
+                        </div>
+                        <div class="col-6">
+                            <input class="colorPicker" type="color" id="Identifier" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="StringLiteral">StringLiteral</label>
+                        </div>
+                        <div class="col-6">
+                            <input class="colorPicker" type="color" id="StringLiteral" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="InferredIdentifier">InferredIdentifier</label>
+                        </div>
+                        <div class="col-6">
+                            <input class="colorPicker" type="color" id="InferredIdentifier" />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>    
+        <div class="row">
+            <a id="download" style="display:none"></a>
+            <button id="btnDownload" class="btn btn-primary">Download theme</button>
+        </div>
+    </div>
 </div>
