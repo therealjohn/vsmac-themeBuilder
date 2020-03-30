@@ -2,17 +2,22 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your Javascript code.
-$(".CodeContainer span").click(function () {
-    alert("Clicked on themeable element: " + this.className);
-});
+//$(".CodeContainer span").click(function () {
+//    alert("Clicked on themeable element: " + this.className);
+//});
 
-$(".colorPicker").on("input", function () {
+$(".colorPickerFG").on("input", function () {
     console.log("div.CodeContainer li span." + $(this).attr("id"));
     $("div.CodeContainer li span." + $(this).attr("id")).css("color", $(this).val());
 });
 
+$(".colorPickerBG").on("input", function () {
+	console.log("div.CodeContainer li span." + $(this).attr("id"));
+	$("div.CodeContainer li span." + $(this).attr("id")).css("background-color", $(this).val());
+});
+
 function downloadObjectAsJson(exportObj, exportName) {
-	var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj));
+	var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj, null, 4));
 	var downloadAnchorNode = document.createElement('a');
 	downloadAnchorNode.setAttribute("href", dataStr);
 	downloadAnchorNode.setAttribute("download", exportName + ".json");
@@ -205,3 +210,7 @@ $("#btnDownload").click(function () {
 
 	downloadObjectAsJson(theme, "theme");
 });
+
+$(function () {
+	$('[data-toggle="tooltip"]').tooltip()
+})

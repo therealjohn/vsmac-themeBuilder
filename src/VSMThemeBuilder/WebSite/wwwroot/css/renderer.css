@@ -37,7 +37,7 @@
 /* Sets up the container of the list (code lines) with general styles for fonts and colors */
 div.CodeContainer {
     padding: 0px 0px 0px 0px;
-    margin: 0px 0px 0px 20px;
+    margin: 0px 0px 0px 0px;
     font-family: Consolas, 'Lucida Console', 'DejaVu Sans Mono', monospace;
     font-size: 11pt;
     font-style: normal;
@@ -46,7 +46,6 @@ div.CodeContainer {
     text-align: left;
     color: #1d1b1b;
     background-color: #ffffff;
-    border: 1px solid #282828;
 }
 
     /* If line numbers are not specified, then a simple unordered list is used having no bullets images. */
@@ -71,9 +70,9 @@ div.CodeContainer {
     div.CodeContainer > ol {
         counter-reset: li;
         margin: 0px 0px 0px 0px;
-        padding: 0px 0px 0px 0px;
-        background-color: #e0e0e0;
-        display:block;
+        padding: 10px 0px 10px 0px;
+        background-color: #ffffff;
+        display: block;
         list-style: none;
     }
 
@@ -83,10 +82,9 @@ div.CodeContainer {
         */
         div.CodeContainer > ol > li {
             position: relative;
-            margin: 0px 0px 0px 44px;
-            padding-left: 5px;
+            margin: 0px 0px 0px 54px;
+            padding-left: 15px;
             background-color: #ffffff;
-            border-left: 1px solid #282828;
             white-space: pre-wrap;
         }
 
@@ -99,6 +97,7 @@ div.CodeContainer {
                 left: -48px;
                 width: 39px;
                 padding-right: 5px;
+                padding-left: 0px;
                 text-align: right;
                 color: #a0a0a0;
             }

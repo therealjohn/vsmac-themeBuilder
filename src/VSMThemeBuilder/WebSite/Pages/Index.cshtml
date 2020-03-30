@@ -1,66 +1,40 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Theme Builder";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-8">
-                <ul class="nav nav-tabs" id="tabs" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="csharp-tab" data-toggle="tab" href="#csharp" role="tab" aria-controls="csharp" aria-selected="true">C#</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="tab-content" id="tabsContent">
-                <div class="tab-pane fade show active" id="csharp" role="tabpanel" aria-labelledby="csharp-tab">
-                    <div class="row">
-                        @Html.Raw(Model.CSharpSampleHtml)
-                    </div>
-
-                    <div class="row">
-                        <div class="col-6">
-                            <label for="Keyword">Keyword</label>
-                        </div>
-                        <div class="col-6">
-                            <input class="colorPicker" type="color" id="Keyword" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <label for="Identifier">Identifier</label>
-                        </div>
-                        <div class="col-6">
-                            <input class="colorPicker" type="color" id="Identifier" />
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-6">
-                            <label for="StringLiteral">StringLiteral</label>
-                        </div>
-                        <div class="col-6">
-                            <input class="colorPicker" type="color" id="StringLiteral" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <label for="InferredIdentifier">InferredIdentifier</label>
-                        </div>
-                        <div class="col-6">
-                            <input class="colorPicker" type="color" id="InferredIdentifier" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <a id="download" style="display:none"></a>
-            <button id="btnDownload" class="btn btn-primary">Download theme</button>
-        </div>
+    <div class="container-fluid no-padding">
+        @Html.Raw(Model.CSharpSampleHtml)
     </div>
-</div>
+
+@section ThemeableScopes
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col" class="center">FG</th>
+                <th scope="col" class="center">BG</th>
+                <th scope="col" class="center"><b>B</b></th>
+                <th scope="col" class="center"><i>I</i></th>
+                <th scope="col" class="center"><u>U</u></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (string scope in @Model.Scopes)
+            {
+                <tr>
+                    <th scope="row">@scope</th>
+                    <td><input type="color" class="colorPickerFG center" /></td>
+                    <td><input type="color" class="colorPickerBG center"/></td>
+                    <td><input type="checkbox" class="center" /></td>
+                    <td><input type="checkbox" class="center" /></td>
+                    <td><input type="checkbox" class="center"/></td>
+                </tr>
+            }
+
+        </tbody>
+    </table>       
+}

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Linq;
 
 namespace VSMThemeBuilder.Pages
 {
@@ -17,6 +18,7 @@ namespace VSMThemeBuilder.Pages
         private readonly IWebHostEnvironment _webHostEnvironment;
 
         public string CSharpSampleHtml { get; set; }
+        public List<string> Scopes { get; set; } = new List<string>();
 
         public IndexModel(ILogger<IndexModel> logger, IWebHostEnvironment webHostEnvironment)
         {
@@ -26,13 +28,30 @@ namespace VSMThemeBuilder.Pages
 
         public void OnGet()
         {
+            Scopes.Clear();
+
             HtmlRenderer renderer = new HtmlRenderer
             {
-                IncludeLineNumbers = true
+                IncludeLineNumbers = true,
+                AlternateLines = false,
+                IncludeDebugInfo = true
             };
 
             string pathToTemplate = Path.Combine(_webHostEnvironment.ContentRootPath, "Templates/CSharpSample.cs");
             CSharpSampleHtml = renderer.Render(System.IO.File.ReadAllText(pathToTemplate));
+
+            string pathToJson = Path.Combine(_webHostEnvironment.ContentRootPath, "Config/config.json");
+            var o = JObject.Parse(System.IO.File.ReadAllText(pathToJson));
+
+            foreach(var scope in o["elements"])
+            {
+                Scopes.Add(scope.ToString());
+            }
+
+            foreach (var scope in o["textElements"])
+            {
+                Scopes.Add(scope.ToString());
+            }
         }
     }
 }

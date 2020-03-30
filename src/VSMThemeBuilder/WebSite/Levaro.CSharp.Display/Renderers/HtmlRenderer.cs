@@ -371,6 +371,8 @@ namespace Levaro.CSharp.Display.Renderers
                         outputText.AppendFormat(" data-syntaxKind=\"{0}\"", syntaxTreeElement.SyntaxKind);
                     }
 
+                    outputText.AppendFormat(" data-toggle=\"tooltip\"");
+                    outputText.AppendFormat(" title=\"{0}\"", HtmlClassName.Comment);
                     outputText.AppendFormat(">{0}</span>", line);
 
                     // Because GetLineEndText is called, IsLineEmpty is reset to true (actually GetLineStartText sets it to true
@@ -396,6 +398,9 @@ namespace Levaro.CSharp.Display.Renderers
                 {
                     outputText.AppendFormat(" data-syntaxKind=\"{0}\"", syntaxTreeElement.SyntaxKind);
                 }
+
+                outputText.AppendFormat(" data-toggle=\"tooltip\"");
+                outputText.AppendFormat(" title=\"{0}\"", className);
 
                 outputText.AppendFormat(">{0}</span>", text);
             }
@@ -626,8 +631,9 @@ namespace Levaro.CSharp.Display.Renderers
                             className = GetIdentifierTokenHtmlClass(token);
                         }
 
-                        break;
+                        break;                   
                     default:
+                        TraceWrite($"Unhandled token kind: {token.Kind()}");
                         break;
                 }
             }
