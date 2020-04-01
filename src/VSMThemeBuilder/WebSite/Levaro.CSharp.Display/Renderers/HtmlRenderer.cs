@@ -7,6 +7,9 @@ using System.Web;
 
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.Classification;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Levaro.CSharp.Display.Renderers
 {
@@ -272,6 +275,12 @@ namespace Levaro.CSharp.Display.Renderers
             get;
             set;
         }
+
+        public virtual Func<string, string> TransformHTMLClassName
+        {
+            get;
+            set;
+        }
         #endregion
 
         /// <summary>
@@ -354,25 +363,26 @@ namespace Levaro.CSharp.Display.Renderers
                 throw new ArgumentNullException(nameof(syntaxTreeElement), "SyntaxTree element may not be null.");
             }
 
-            HtmlClassName className = GetHtmlClass(syntaxTreeElement);
+            //HtmlClassName className = GetHtmlClass(syntaxTreeElement);
+            string tagClassName = GetHTMLClassNameFromClassifier(syntaxTreeElement);
             string text = GetText(syntaxTreeElement);
-            TraceWriteLine("Class Name: [{0}]; Text: [{1}]", className, text.Replace("\r\n", "\\r\\n"));
+            TraceWriteLine("Class Name: [{0}]; Text: [{1}]", tagClassName, text.Replace("\r\n", "\\r\\n"));            
 
             StringBuilder outputText = new StringBuilder();
             if (syntaxTreeElement.SyntaxKind == SyntaxKind.MultiLineCommentTrivia)
             {
                 string[] lines = text.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
                 for (int i = 0; i < lines.Length; i++)
-                {
+                {                                      
                     string line = lines[i];
-                    outputText.AppendFormat("<span class=\"{0}\"", HtmlClassName.Comment);
+                    outputText.AppendFormat("<span class=\"{0}\"", tagClassName);
                     if (IncludeDebugInfo)
                     {
                         outputText.AppendFormat(" data-syntaxKind=\"{0}\"", syntaxTreeElement.SyntaxKind);
                     }
 
                     outputText.AppendFormat(" data-toggle=\"tooltip\"");
-                    outputText.AppendFormat(" title=\"{0}\"", HtmlClassName.Comment);
+                    outputText.AppendFormat(" title=\"{0}\"", tagClassName);
                     outputText.AppendFormat(">{0}</span>", line);
 
                     // Because GetLineEndText is called, IsLineEmpty is reset to true (actually GetLineStartText sets it to true
@@ -391,16 +401,16 @@ namespace Levaro.CSharp.Display.Renderers
                     }
                 }
             }
-            else if (className > HtmlClassName.None)
+            else
             {
-                outputText.AppendFormat("<span class=\"{0}\"", className);
+                outputText.AppendFormat("<span class=\"{0}\"", tagClassName);
                 if (IncludeDebugInfo)
                 {
                     outputText.AppendFormat(" data-syntaxKind=\"{0}\"", syntaxTreeElement.SyntaxKind);
                 }
 
                 outputText.AppendFormat(" data-toggle=\"tooltip\"");
-                outputText.AppendFormat(" title=\"{0}\"", className);
+                outputText.AppendFormat(" title=\"{0}\"", tagClassName);
 
                 outputText.AppendFormat(">{0}</span>", text);
             }
@@ -411,6 +421,31 @@ namespace Levaro.CSharp.Display.Renderers
             }
 
             Writer.Write(text);
+        }
+
+        private string GetHTMLClassNameFromClassifier(SyntaxTreeElement syntaxTreeElement)
+        {
+            string className = string.Empty;            
+
+            IEnumerable<ClassifiedSpan> spans = Classifier.GetClassifiedSpans(SemanticModel, syntaxTreeElement.Token.Span, Workspace);
+
+            ClassifiedSpan span = spans.FirstOrDefault();
+            className = span.ClassificationType;
+
+            if (TransformHTMLClassName != null)
+            {
+                className = TransformHTMLClassName(span.ClassificationType);
+            }
+
+            return SanatizeClassName(className);
+        }
+
+        private string SanatizeClassName(string raw)
+        {
+            return Regex
+                .Replace(raw ?? string.Empty, @"\s+", "")
+                .Replace("(","-")
+                .Replace(")", "");
         }
 
         /// <summary>

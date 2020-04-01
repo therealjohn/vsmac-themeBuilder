@@ -4,7 +4,9 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.Classification;
 using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.Text;
 
 namespace Levaro.CSharp.Display.Renderers
 {
@@ -87,6 +89,15 @@ namespace Levaro.CSharp.Display.Renderers
         {
             get;
             set;
+        }        
+
+        /// <summary>
+        /// Gets or sets the Workspace.
+        /// </summary>
+        protected virtual Workspace Workspace
+        {
+            get;
+            set;
         }
 
         #region IRenderer implementation ...
@@ -154,7 +165,13 @@ namespace Levaro.CSharp.Display.Renderers
             }
 
             Writer = writer;
-            SyntaxTree = CSharpSyntaxTree.ParseText(codeText ?? string.Empty);
+
+            Workspace = new AdhocWorkspace();
+            Solution solution = Workspace.CurrentSolution;
+            Project project = solution.AddProject("sampleProject", "sampleAssembly", LanguageNames.CSharp);
+            var document = project.AddDocument("sample.cs", codeText);
+
+            SyntaxTree = document.GetSyntaxTreeAsync().GetAwaiter().GetResult(); //CSharpSyntaxTree.ParseText(codeText ?? string.Empty);            
 
             // TODO: Formatting no longer provides a extension method on nodes. Move the entire functionality to another namespace.
             // if (FormatCode)
@@ -163,11 +180,12 @@ namespace Levaro.CSharp.Display.Renderers
             //     CompilationUnitSyntax formattedRoot = (CompilationUnitSyntax)formattingResult.GetFormattedRoot();
             //     SyntaxTree = SyntaxTree.Create(formattedRoot);
             // }
-            Compilation compilation = CSharpCompilation.Create("CoreRenderer",
-                                                               syntaxTrees: new List<SyntaxTree> { SyntaxTree },
-                                                               references: MetadataReferences);
-            SemanticModel = compilation.GetSemanticModel(SyntaxTree);
+            //Compilation compilation = CSharpCompilation.Create("CoreRenderer",
+            //                                                   syntaxTrees: new List<SyntaxTree> { SyntaxTree },
+            //                                                   references: MetadataReferences);
 
+            SemanticModel = document.GetSemanticModelAsync().GetAwaiter().GetResult();//compilation.GetSemanticModel(SyntaxTree);
+            
             CodeWalker walker = new CodeWalker();
             walker.SyntaxVisiting += (s, e) =>
             {

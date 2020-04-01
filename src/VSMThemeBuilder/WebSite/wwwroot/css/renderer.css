@@ -120,7 +120,7 @@ div.CodeContainer {
         color: #0000ff;
     }
 
-    div.CodeContainer li span.StringLiteral {
+    div.CodeContainer li span.String {
         color: #a31515;
     }
 
@@ -128,7 +128,7 @@ div.CodeContainer {
         color: #a31515;
     }
 
-    div.CodeContainer li span.Identifier,
+    div.CodeContainer li span.identifier,
     div.CodeContainer li span.UnknownIdentifier,
     div.CodeContainer li span.InferredIdentifier {
         color: #2b91af;
@@ -149,3 +149,64 @@ div.CodeContainer {
     div.CodeContainer li span.DisabledText {
         color: #dfcddb;
     }
+
+    div.CodeContainer li span.UserTypes {
+        color: #508FAE;
+    }
+
+    div.CodeContainer li span.UserMethod {
+        color: #74531f;
+    }
+
+    div.CodeContainer li span.UserParameter {
+        color: #1f377f;
+    }
+
+    div.CodeContainer li span.UserEvent {
+        color: #222222;
+    }
+
+    div.CodeContainer li span.UserVariable {
+        color: #1f377f;
+    }
+
+    div.CodeContainer li span.keyword-control {
+        color: #8f08c4;
+    }
+
+    div.CodeContainer li span.UserTypes-Delegates {
+        color: #508FAE;
+    }
+
+    div.CodeContainer li span.UserTypes-Interfaces {
+        color: #508FAE;
+    }
+
+    div.CodeContainer li span.extensionmethodname {
+        color: #74531f;
+    }
+
+    div.CodeContainer li span.UserTypes-Enums {
+        color: #508FAE;
+    }
+
+    div.CodeContainer li span.UserEnumMember {
+        color: #1f377f;
+    }
+
+    div.CodeContainer li span.UserTypes-Typeparameters {
+        color: #508FAE;
+    }
+
+    div.CodeContainer li span.StringVerbatim {
+        color: #a31515;
+    }
+
+    div.CodeContainer li span.Preprocessor {
+        color: #808080;
+    }
+
+    div.CodeContainer li span.CommentXMLDocComment {
+        color: #008000;
+    }
+
